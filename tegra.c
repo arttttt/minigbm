@@ -291,7 +291,7 @@ static int tegra_bo_import(struct bo *bo, struct drv_import_fd_data *data)
 		assert(0);
 	}
 
-	bo->format_modifiers[0] = fourcc_mod_code(NV, bo->tiling);
+	bo->format_modifiers[0] = fourcc_mod_code(NVIDIA, bo->tiling);
 	return 0;
 }
 

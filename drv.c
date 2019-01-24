@@ -47,7 +47,6 @@ extern const struct backend backend_meson;
 #ifdef DRV_MSM
 extern const struct backend backend_msm;
 #endif
-extern const struct backend backend_nouveau;
 #ifdef DRV_RADEON
 extern const struct backend backend_radeon;
 #endif
@@ -97,7 +96,6 @@ static const struct backend *drv_get_backend(int fd)
 #ifdef DRV_MSM
 		&backend_msm,
 #endif
-		&backend_nouveau,
 #ifdef DRV_RADEON
 		&backend_radeon,
 #endif

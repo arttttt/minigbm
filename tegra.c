@@ -254,7 +254,7 @@ static int tegra_bo_create(struct bo *bo, uint32_t width, uint32_t height, uint3
 
 		/* Encode blocklinear parameters for EGLImage creation. */
 		bo->tiling = (kind & 0xff) | ((block_height_log2 & 0xf) << 8);
-		bo->format_modifiers[0] = fourcc_mod_code(NV, bo->tiling);
+		bo->format_modifiers[0] = fourcc_mod_code(NVIDIA, bo->tiling);
 	}
 
 	return 0;
@@ -348,6 +348,11 @@ static int tegra_bo_flush(struct bo *bo, struct mapping *mapping)
 	return 0;
 }
 
+static uint32_t tegra_resolve_format(uint32_t format, uint64_t use_flags)
+{
+	return format;
+}
+
 const struct backend backend_tegra = {
 	.name = "tegra",
 	.init = tegra_init,
@@ -357,6 +362,7 @@ const struct backend backend_tegra = {
 	.bo_map = tegra_bo_map,
 	.bo_unmap = tegra_bo_unmap,
 	.bo_flush = tegra_bo_flush,
+	.resolve_format = tegra_resolve_format,
 };
 
 #endif

@@ -6,6 +6,7 @@ ifeq ($(strip $(BOARD_USES_MINIGBM)), true)
 MINIGBM_GRALLOC_MK := $(call my-dir)/Android.gralloc.mk
 LOCAL_PATH := $(call my-dir)
 intel_drivers := i915 i965
+tegra_drivers := tegra
 
 MINIGBM_SRC := \
 	amdgpu.c \
@@ -19,7 +20,6 @@ MINIGBM_SRC := \
 	mediatek.c \
 	meson.c \
 	msm.c \
-	nouveau.c \
 	radeon.c \
 	rockchip.c \
 	tegra.c \
@@ -39,6 +39,12 @@ ifneq ($(filter $(intel_drivers), $(BOARD_GPU_DRIVERS)),)
 MINIGBM_CPPFLAGS += -DDRV_I915
 MINIGBM_CFLAGS += -DDRV_I915
 LOCAL_SHARED_LIBRARIES += libdrm_intel
+endif
+
+ifneq ($(filter $(tegra_drivers), $(BOARD_GPU_DRIVERS)),)
+MINIGBM_CPPFLAGS += -DDRV_TEGRA
+MINIGBM_CFLAGS += -DDRV_TEGRA
+LOCAL_SHARED_LIBRARIES += libdrm_tegra
 endif
 
 ifneq ($(filter meson, $(BOARD_GPU_DRIVERS)),)

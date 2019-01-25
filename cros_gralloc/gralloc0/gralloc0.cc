@@ -117,6 +117,7 @@ static int gralloc0_alloc(alloc_device_t *dev, int w, int h, int format, int usa
 			"drv_format: %4.4s, use_flags: %llu\n",
 			format, usage, reinterpret_cast<char *>(&descriptor.drm_format),
 			static_cast<unsigned long long>(descriptor.use_flags));
+		return -EINVAL;
 	}
 
 	ret = mod->driver->allocate(&descriptor, handle);

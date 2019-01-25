@@ -46,7 +46,8 @@ struct tegra_private_map_data {
 	void *untiled;
 };
 
-static const uint32_t render_target_formats[] = { DRM_FORMAT_ARGB8888, DRM_FORMAT_XRGB8888 };
+static const uint32_t render_target_formats[] = { DRM_FORMAT_ARGB8888, DRM_FORMAT_XRGB8888,
+												  DRM_FORMAT_ABGR8888, DRM_FORMAT_XBGR8888 };
 
 static int compute_block_height_log2(int height)
 {
